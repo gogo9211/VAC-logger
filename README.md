@@ -28,6 +28,7 @@ Some imports may be directly called rather than a table index, so in future upda
 
 # **How to use**
 * Ensure your steam is **NOT** running as admin.
+* Ensure that VMD is in a Folder and not directly under your drive directory, (eg: "C:\VMD\\" is okay but not "C:\\")
 
 Inject the compiled dll into `steamservice.dll`, then load up a VAC game.
 Once injected logs on VAC modules will begin to appear in the `(DLL_DIR)/logs` folder.
