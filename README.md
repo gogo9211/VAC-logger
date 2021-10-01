@@ -2,6 +2,13 @@
 * [@gogo9211](https://github.com/gogo9211)
 * 0x90 ([@AmJayden](https://github.com/AmJayden))
 
+# **Log files**
+Below is an explanation on each log file and what it contains, for ease of reading I will placehold the module name with `mod`.
+
+Firstly, `mod.tmp` is a clone of the module that VAC uses, so you can reverse it.
+`mod.txt` contains information on each import and the time it was resolved for that module.
+`module_logs.txt` contains a log of each loaded module, it has the Time it was loaded, the handle, the function, and location of the module.
+
 # **Insight on VAC imports**
 VAC decrypts their encrypted import names at runtime, resolving them within their init function using GetProcAddress.
 
