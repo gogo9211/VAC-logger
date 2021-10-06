@@ -41,4 +41,6 @@ namespace vmd::modules
 	std::vector<peb_entry_data> walk_peb();
 
 	HMODULE get_module_from_address(std::uintptr_t address);
+
+	std::uint32_t hash_module(const char* mod_location);
 }

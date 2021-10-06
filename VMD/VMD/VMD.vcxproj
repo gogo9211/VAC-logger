@@ -155,11 +155,14 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="hooking\hooking.cpp" />
     <ClCompile Include="modules\modules.cpp" />
+    <ClCompile Include="utils\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addresses\addresses.hpp" />
     <ClInclude Include="hooking\hooking.hpp" />
     <ClInclude Include="modules\modules.hpp" />
+    <ClInclude Include="utils\utils.hpp" />
+    <ClInclude Include="xxhash\xxhash.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

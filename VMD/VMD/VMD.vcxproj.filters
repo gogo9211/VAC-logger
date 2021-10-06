@@ -22,6 +22,12 @@
     <Filter Include="Source Files\modules">
       <UniqueIdentifier>{c5839c53-cf35-4a52-884d-1c66b52c459d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\xxhash">
+      <UniqueIdentifier>{f879eb5d-28fe-4edb-a298-6e02b688e81a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{953041b9-890d-4c21-b8b9-271aae5a195d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -33,6 +39,9 @@
     <ClCompile Include="modules\modules.cpp">
       <Filter>Source Files\modules</Filter>
     </ClCompile>
+    <ClCompile Include="utils\utils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hooking\hooking.hpp">
@@ -43,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="modules\modules.hpp">
       <Filter>Source Files\modules</Filter>
+    </ClInclude>
+    <ClInclude Include="xxhash\xxhash.hpp">
+      <Filter>Source Files\xxhash</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\utils.hpp">
+      <Filter>Source Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

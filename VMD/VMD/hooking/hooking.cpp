@@ -21,7 +21,7 @@ std::uintptr_t vmd::hooking::tramp_hook(void* func, const void* new_func, const 
 
 	DWORD old_protect{};
 
-	VirtualProtect(reinterpret_cast<void*>(func_n), inst_size, 0x40, &old_protect);
+	VirtualProtect(reinterpret_cast<void*>(func_n), inst_size, PAGE_EXECUTE_READWRITE, &old_protect);
 
 	std::memset(reinterpret_cast<void*>(func_n), 0x90, inst_size);
 
