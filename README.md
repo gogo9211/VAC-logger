@@ -7,7 +7,8 @@ Below is an explanation on each log file and what it contains, for ease of readi
 
 Firstly, `mod.tmp` is a clone of the module that VAC uses, so you can reverse it.
 `mod.txt` contains information on each import and the time it was resolved for that module.
-`module_logs.txt` contains a log of each loaded module, it has the Time it was loaded, the handle, the function, and location of the module.
+`module_loads.txt` contains a log of each loaded module, it has the Time it was loaded, the handle, the function, the location of the module and a hash of the module.
+`module_calls.txt` contains logs of each time loaded module was invoked, and some data about it
 
 # **Insight on VAC imports**
 VAC decrypts their encrypted import names at runtime, resolving them within their init function using GetProcAddress.
