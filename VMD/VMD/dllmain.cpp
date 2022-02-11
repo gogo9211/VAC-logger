@@ -19,9 +19,12 @@ get_module_address_t get_module_address_original = nullptr;
 auto get_proc_address_original = reinterpret_cast<decltype(&GetProcAddress)>(0x0);
 
 const auto module_invoker_start = steam_service + vmd::addresses::module_invoker_address;
-const auto module_invoker_end = module_invoker_start + 0x6;
+const auto module_invoker_end = module_invoker_start + 10;
 
-void __stdcall hook_stub(std::uintptr_t module_info, std::uint32_t load_status)
+std::uint32_t load_status;
+std::uintptr_t module_info;
+
+void __stdcall hook_stub()
 {
     std::ofstream file;
 
@@ -59,10 +62,7 @@ void __stdcall hook_stub(std::uintptr_t module_info, std::uint32_t load_status)
 
 _declspec(naked) void module_invoker_hook()
 {
-    std::uint32_t load_status;
-    std::uintptr_t module_info;
-
-    __asm
+    __asm //you might need to update this
     {
         push eax
         mov eax, [ebx + 0x10]
@@ -70,13 +70,13 @@ _declspec(naked) void module_invoker_hook()
         pop eax
 
         mov [ebx + 0x10], eax
-        mov esi, [ebp + 0x28]
+        mov [ebp - 0x04], 0xFFFFFFFF
 
         mov module_info, ebx
         pushad
     }
 
-    hook_stub(module_info, load_status);
+    hook_stub();
 
     __asm
     {
@@ -98,13 +98,13 @@ std::uintptr_t get_module_address_hook(HMODULE mod, const char* name, std::uintp
     if (file_s.substr(file_s.find_last_of(".") + 1) == "tmp")
     {
         char log_p[MAX_PATH];
-		GetModuleFileNameA(dir_mod, log_p, MAX_PATH);
+        GetModuleFileNameA(dir_mod, log_p, MAX_PATH);
 
-		std::string log_location = log_p;
+        std::string log_location = log_p;
 
-    	log_location = log_location.substr(0, log_location.find_last_of("/\\") + 1) + "\\logs";
+        log_location = log_location.substr(0, log_location.find_last_of("/\\") + 1) + "\\logs";
         if (!std::filesystem::exists(log_location))
-			std::filesystem::create_directory(log_location);
+            std::filesystem::create_directory(log_location);
 
         file.open(log_location + "\\module_loads.txt", std::ios_base::app);
 
@@ -200,7 +200,7 @@ void main_d()
 
     VirtualProtect(reinterpret_cast<void*>(module_invoker_start), 0x6, PAGE_EXECUTE_READWRITE, &old_protect);
 
-    std::memset(reinterpret_cast<void*>(module_invoker_start), 0x90, 0x6);
+    std::memset(reinterpret_cast<void*>(module_invoker_start), 0x90, 10);
 
     *reinterpret_cast<std::uint8_t*>(module_invoker_start) = 0xE9;
     *reinterpret_cast<std::uintptr_t*>(module_invoker_start + 1) = (reinterpret_cast<std::uintptr_t>(module_invoker_hook) - module_invoker_start - 5);
